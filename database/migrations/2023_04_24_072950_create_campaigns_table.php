@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
+            $table->text('name');
+            $table->text('slug');
+            $table->text('date');
             $table->timestamps();
         });
     }

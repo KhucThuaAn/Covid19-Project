@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('places', function (Blueprint $table) {
             $table->id();
             $table->text('name');
-            $table->float('price', 0, 15)->nullable()->default(0);
-            $table->tinyInteger('validity')->comment('0: None, 1: Giới hạn số lượng, 2: Giới hạn ngày')->default(0);
-            $table->bigInteger('amount')->nullable()->default(0);
-            $table->text('until')->nullable();
+            $table->tinyInteger('area');
+            $table->float('capacity');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('places');
     }
 };
