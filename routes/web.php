@@ -29,9 +29,3 @@ Route::get('/places/create',[ViewController::class, 'create_place'] )->name('pla
 
 
 
-
-Route::get('/',[ViewController::class, 'index'] )->name('index');
-Route::get('/',[ViewController::class, 'index'] )->name('index');
-Route::get('/',[ViewController::class, 'index'] )->name('index');
-Route::get('/',[ViewController::class, 'index'] )->name('index');
-Route::get('/',[ViewController::class, 'index'] )->name('index');

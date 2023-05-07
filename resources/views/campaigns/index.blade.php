@@ -23,7 +23,7 @@
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link active" href="campaign/index.html">Quản lý chiến dịch</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="">Quản lý chiến dịch</a></li>
                 </ul>
             </div>
         </nav>
@@ -41,7 +41,7 @@
             <div class="row campaign">
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <a href="campaigns/detail.html" class="btn text-left campaign">
+                        <a href="" class="btn text-left campaign">
                             <div class="card-body">
                                 <h5 class="card-title">September 12, 2021 campaign</h5>
                                 <p class="card-subtitle">{insert campaign date}</p>

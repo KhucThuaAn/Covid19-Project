@@ -28,7 +28,12 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $request->validate([
+            'name' => 'required|name',
+        ]);
+        if($request->name =='') {
+            return redirect()->back()->withErrors($validator);
+        } 
     }
 
     /**

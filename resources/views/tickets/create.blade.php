@@ -56,13 +56,13 @@
                 </div>
             </div>
 
-            <form class="needs-validation" novalidate action="campaigns/detail.html">
-
+            <form class="needs-validation" novalidate action="{{ route('ticket.store') }}" method="POST">
+                @csrf
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputName">Tên</label>
                         <!-- adding the class is-invalid to the input, shows the invalid feedback below -->
-                        <input type="text" class="form-control is-invalid" id="inputName" name="name" placeholder="" value="">
+                        <input type="text" class="form-control  is-invalid " id="inputName" name="name" placeholder="" value="">
                         <div class="invalid-feedback">
                             Tên là trường bắt buộc
                         </div>
@@ -72,17 +72,17 @@
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputCost">Giá</label>
-                        <input type="number" class="form-control" id="inputCost" name="cost" placeholder="" value="0">
+                        <input type="number" class="form-control" id="inputCost" name="price" placeholder="" value="0">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="selectSpecialValidity">Hiệu lực đặc biệt</label>
-                        <select class="form-control" id="selectSpecialValidity" name="special_validity">
-                            <option value="" selected>Không</option>
-                            <option value="amount">Số lượng giới hạn</option>
-                            <option value="date">Có thể mua cho đến nay</option>
+                        <select class="form-control" id="selectSpecialValidity" name="validity">
+                            <option value="0" selected>Không</option>
+                            <option value="1">Số lượng giới hạn</option>
+                            <option value="2">Có thể mua cho đến nay</option>
                         </select>
                     </div>
                 </div>
@@ -97,18 +97,13 @@
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputValidTill">Vé có thể được bán cho đến khi</label>
-                        <input type="text"
-                               class="form-control"
-                               id="inputValidTill"
-                               name="valid_until"
-                               placeholder="yyyy-mm-dd HH:MM"
-                               value="">
+                        <input type="text" class="form-control" id="inputValidTill" name="valid_until" placeholder="yyyy-mm-dd HH:MM" value="">
                     </div>
                 </div>
 
                 <hr class="mb-4">
                 <button class="btn btn-primary" type="submit">Lưu vé</button>
-                <a href="campaigns/detail.html" class="btn btn-link">Quay lại</a>
+                <a href="{{ route('campaign.index')}}" class="btn btn-link">Quay lại</a>
             </form>
 
         </main>
