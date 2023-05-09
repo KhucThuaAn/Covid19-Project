@@ -23,8 +23,9 @@
                 <h1 class="h2">Chiến dịch tiêm phòng Covid 19</h1>
             </div>
 
-            <form class="form-signin" action="campains/index.html">
-                <h1 class="h3 mb-3 font-weight-normal">Đăng nhập</h1>
+            <form class="form-signin" action="{{ route('login.check') }}" method="POST">
+                @csrf
+                <h1 class="h3 mb-3 font-weight-normal">Đăng nhập </h1>
 
                 <label for="inputEmail" class="sr-only">Email</label>
                 <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" autofocus>
