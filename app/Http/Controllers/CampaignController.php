@@ -12,7 +12,8 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        return view('campaigns.index');
+        $campaigns = Campaign::all(); 
+        return view('campaigns.index', compact('campaigns'));
     }
 
     /**
@@ -28,7 +29,12 @@ class CampaignController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $save = Campaign::create($request->only('name','slug','date'));
+        if($save) {
+            return redirect()->route('campaign.index');
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -36,7 +42,7 @@ class CampaignController extends Controller
      */
     public function show(Campaign $campaign)
     {
-        return view('campaigns.detail');
+        return view('campaigns.detail', compact('campaign'));
     }
 
     /**
@@ -44,7 +50,7 @@ class CampaignController extends Controller
      */
     public function edit(Campaign $campaign)
     {
-        return view('campaigns.edit');
+        return view('campaigns.edit',compact('campaign'));
     }
 
     /**
@@ -52,7 +58,12 @@ class CampaignController extends Controller
      */
     public function update(Request $request, Campaign $campaign)
     {
-        //
+        $update = $campaign->update($request->only('name','slug','date'));
+        if($update) {
+            return redirect()->route('campaign.index');
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**

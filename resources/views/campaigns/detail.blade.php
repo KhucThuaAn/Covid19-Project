@@ -23,21 +23,21 @@
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="campaigns/index.html">Manage Campaigns</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('campaign.index') }}">Quản lý chiến dịch</a></li>
                 </ul>
 
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>{insert campaign name}</span>
+                    <span>{{ $campaign->name }}</span>
                 </h6>
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link active" href="campaigns/detail.html">Overview</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{ route('campaign.show',$campaign)}}">Thống kê</a></li>
                 </ul>
 
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Reports</span>
+                    <span>Báo cáo</span>
                 </h6>
                 <ul class="nav flex-column mb-2">
-                    <li class="nav-item"><a class="nav-link" href="reports/index.html">Palce capacity</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Sức chứa địa điểm</a></li>
                 </ul>
             </div>
         </nav>
@@ -45,20 +45,20 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="border-bottom mb-3 pt-3 pb-2 event-title">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-                    <h1 class="h2">{insert campaign name}</h1>
+                    <h1 class="h2">{{ $campaign->name }}</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
-                            <a href="campaigns/edit.html" class="btn btn-sm btn-outline-secondary">Edit campaign</a>
+                            <a href="{{ route('campaign.edit', $campaign)}}" class="btn btn-sm btn-outline-secondary">Chỉnh sửa chiến dịch</a>
                         </div>
                     </div>
                 </div>
-                <span class="h6">{insert campaign date}</span>
+                <span class="h6">{{ $campaign->date }}</span>
             </div>
 
             <!-- Tickets -->
             <div id="tickets" class="mb-3 pt-3 pb-2">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-                    <h2 class="h4">Tickets</h2>
+                    <h2 class="h4">Vé</h2>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <a href="{{ route('ticket.create') }}" class="btn btn-sm btn-outline-secondary">
@@ -102,7 +102,7 @@
             <!-- Sessions -->
             <div id="sessions" class="mb-3 pt-3 pb-2">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-                    <h2 class="h4">Sessions</h2>
+                    <h2 class="h4">Phiên</h2>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <a href="{{ route('session.create') }}" class="btn btn-sm btn-outline-secondary">
@@ -153,11 +153,11 @@
             <!-- Areas -->
             <div id="channels" class="mb-3 pt-3 pb-2">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-                    <h2 class="h4">Areas</h2>
+                    <h2 class="h4">Vùng</h2>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <a href="{{ route('areas.create') }}" class="btn btn-sm btn-outline-secondary">
-                                Create new area
+                                Tạo mới vùng
                             </a>
                         </div>
                     </div>
@@ -186,11 +186,11 @@
             <!-- Palces -->
             <div id="rooms" class="mb-3 pt-3 pb-2">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-                    <h2 class="h4">Places</h2>
+                    <h2 class="h4">Địa điểm</h2>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <a href="{{ route('place.create') }}" class="btn btn-sm btn-outline-secondary">
-                                Create new place
+                                Tạo mới địa điểm
                             </a>
                         </div>
                     </div>
