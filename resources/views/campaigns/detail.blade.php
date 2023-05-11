@@ -20,27 +20,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-            <div class="sidebar-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('campaign.index') }}">Quản lý chiến dịch</a></li>
-                </ul>
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>{{ $campaign->name }}</span>
-                </h6>
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link active" href="{{ route('campaign.show',$campaign)}}">Thống kê</a></li>
-                </ul>
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Báo cáo</span>
-                </h6>
-                <ul class="nav flex-column mb-2">
-                    <li class="nav-item"><a class="nav-link" href="">Sức chứa địa điểm</a></li>
-                </ul>
-            </div>
-        </nav>
+        @include('layouts.sidebar')
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="border-bottom mb-3 pt-3 pb-2 event-title">
@@ -62,7 +42,7 @@
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <a href="{{ route('ticket.create') }}" class="btn btn-sm btn-outline-secondary">
-                                Create new ticket
+                                Tạo mới vé
                             </a>
                         </div>
                     </div>
@@ -106,7 +86,7 @@
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <a href="{{ route('session.create') }}" class="btn btn-sm btn-outline-secondary">
-                                Create new session
+                                Tạo mới phiên
                             </a>
                         </div>
                     </div>

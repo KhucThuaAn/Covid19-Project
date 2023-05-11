@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CVC Backend</title>
+    <title>Tạo mới chiến dịch</title>
 
     <base href="../">
     <!-- Bootstrap core CSS -->
@@ -23,7 +23,7 @@
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link active" href="campaigns/index.html">Manage Campaigns1</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="campaigns/index.html">Manage Campaigns</a></li>
                 </ul>
             </div>
         </nav>
@@ -31,12 +31,12 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Manage Campaigns</h1>
+                <h1 class="h2">Quản lý chiến dịch</h1>
             </div>
 
             <div class="mb-3 pt-3 pb-2">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-                    <h2 class="h4">Create new campaign</h2>
+                    <h2 class="h4">Tạo mới chiến dịch</h2>
                 </div>
             </div>
 
@@ -46,9 +46,9 @@
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="name">Tên chiến dịch</label>
                         <!-- adding the class is-invalid to the input, shows the invalid feedback below -->
-                        <input type="text" class="form-control is-invalid" id="name" name="name" placeholder="" value="">
+                        <input type="text" class="form-control  {{ $errors->first('name') ? 'is-invalid' : ''}}" id="name" name="name" placeholder="" value="">
                         <div class="invalid-feedback">
-                            Tên là bắt buộc
+                            {{ $errors->first('name') }}
                         </div>
                     </div>
                 </div>
@@ -63,12 +63,10 @@
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputDate">Thời gian</label>
-                        <input type="text"
-                               class="form-control"
-                               id="inputDate"
-                               name="date"
-                               placeholder="yyyy-mm-dd"
-                               value="">
+                        <input type="text" class="form-control" id="inputDate" name="date" placeholder="yyyy-mm-dd" value="">
+                        <div class="invalid-feedback">
+                            {{ $errors->first('date') }}
+                        </div>
                     </div>
                 </div>
 

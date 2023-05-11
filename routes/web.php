@@ -28,4 +28,5 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::resource('ticket', TicketController::class);
     Route::get('/places/create',[ViewController::class, 'create_place'] )->name('place.create');
     Route::get('/logout',[LoginController::class, 'logout'] )->name('logout');
+    Route::get('/report',[ViewController::class, 'report'] )->name('report');
 });

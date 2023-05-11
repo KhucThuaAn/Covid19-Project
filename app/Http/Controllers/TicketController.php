@@ -28,12 +28,13 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $request->validate([
-            'name' => 'required|name',
-        ]);
-        if($request->name =='') {
-            return redirect()->back()->withErrors($validator);
-        } 
+        $save = Ticket::create($request->only('name','price','validity','amount','until',));
+
+        if($save) {
+            return redirect()->route('campaign.index');
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**

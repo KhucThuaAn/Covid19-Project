@@ -18,6 +18,10 @@ class ViewController extends Controller
         return view('places.create');
     }
 
+    public function report() {
+        return view('reports.index');
+    }
+
 
     
 }

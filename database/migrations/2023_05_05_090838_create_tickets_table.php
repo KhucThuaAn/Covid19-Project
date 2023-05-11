@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('campaign_id');
             $table->text('name');
             $table->float('price', 0, 15)->nullable()->default(0);
             $table->tinyInteger('validity')->comment('0: None, 1: Giới hạn số lượng, 2: Giới hạn ngày')->default(0);

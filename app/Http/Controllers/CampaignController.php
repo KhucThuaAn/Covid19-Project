@@ -29,7 +29,18 @@ class CampaignController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'name.required' => 'Bạn cần nhập tên chiến dịch',
+            'date.required' => 'Bạn phải nhập thời gian'
+        ];
+        $this->validate($request,[
+            'name'=>'required',
+            'date'=>'required'
+        ], $messages);
+        $errors = $validate->errors();
+
         $save = Campaign::create($request->only('name','slug','date'));
+
         if($save) {
             return redirect()->route('campaign.index');
         } else {
@@ -73,4 +84,6 @@ class CampaignController extends Controller
     {
         //
     }
+
+    
 }

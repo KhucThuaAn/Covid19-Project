@@ -97,7 +97,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputValidTill">Vé có thể được bán cho đến khi</label>
-                        <input type="text" class="form-control" id="inputValidTill" name="valid_until" placeholder="yyyy-mm-dd HH:MM" value="">
+                        <input type="text" class="form-control" id="inputValidTill" name="until" placeholder="yyyy-mm-dd HH:MM" value="">
                     </div>
                 </div>
 
