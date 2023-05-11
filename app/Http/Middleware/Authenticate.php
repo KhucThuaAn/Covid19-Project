@@ -15,7 +15,6 @@ class Authenticate extends Middleware
         if (!auth()->check()) {
             return redirect()->route('login');
         }
-    
         return $next($request);
     }
 }

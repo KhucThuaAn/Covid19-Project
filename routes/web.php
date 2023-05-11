@@ -20,16 +20,12 @@ use App\Http\Controllers\LoginController;
 */
 Route::get('/',[ViewController::class, 'login'] )->name('login');
 Route::post('/login',[LoginController::class, 'check'] )->name('login.check');
-Route::middleware(['auth'])->group(function () { 
+
+Route::group(['middleware' => 'checklogin'], function () {
     Route::get('/areas/create',[ViewController::class, 'create_areas'] )->name('areas.create');
     Route::resource('campaign', CampaignController::class);
     Route::resource('session', CampaignController::class);
     Route::resource('ticket', TicketController::class);
     Route::get('/places/create',[ViewController::class, 'create_place'] )->name('place.create');
     Route::get('/logout',[LoginController::class, 'logout'] )->name('logout');
-
 });
-
-
-
-
