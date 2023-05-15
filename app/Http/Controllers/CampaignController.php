@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
 class CampaignController extends Controller
@@ -53,7 +54,9 @@ class CampaignController extends Controller
      */
     public function show(Campaign $campaign)
     {
-        return view('campaigns.detail', compact('campaign'));
+        $tickets = Ticket::all();
+        
+        return view('campaigns.detail', compact('campaign','tickets'));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Place;
+use App\Models\Campaign;
 use Illuminate\Http\Request;
 
 class PlaceController extends Controller
@@ -18,9 +19,10 @@ class PlaceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Campaign $campaign)
     {
-        //
+        dd($campaign->all());
+        return view('places.create');
     }
 
     /**
@@ -28,7 +30,7 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

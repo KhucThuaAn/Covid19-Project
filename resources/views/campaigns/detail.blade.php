@@ -50,33 +50,18 @@
             </div>
 
             <div class="row tickets">
+                @foreach ($tickets as $ticket)
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title">Normal</h5>
-                            <p class="card-text">200.-</p>
-                            <p class="card-text">&nbsp;</p>
+                            <h5 class="card-title">{{ $ticket->name }}</h5>
+                            <p class="card-text">Giá vé: {{ $ticket->price }} vnđ</p>
+                            <p class="card-text">{{ $ticket->until }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Early Bird</h5>
-                            <p class="card-text">120.-</p>
-                            <p class="card-text">Available until September 12, 2021</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">VIP</h5>
-                            <p class="card-text">400.-</p>
-                            <p class="card-text">100 tickets available</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                
             </div>
 
             <!-- Sessions -->
@@ -169,7 +154,7 @@
                     <h2 class="h4">Địa điểm</h2>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
-                            <a href="{{ route('place.create') }}" class="btn btn-sm btn-outline-secondary">
+                            <a href="{{ route('place.create', $campaign) }}" class="btn btn-sm btn-outline-secondary">
                                 Tạo mới địa điểm
                             </a>
                         </div>
