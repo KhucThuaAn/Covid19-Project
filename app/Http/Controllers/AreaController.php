@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ticket;
-use App\Models\Campaign;
+use App\Models\Area;
 use Illuminate\Http\Request;
 
-class TicketController extends Controller
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,36 +20,34 @@ class TicketController extends Controller
      */
     public function create($campaign_id)
     {
-        return view('tickets.create', compact('campaign_id'));
+        return view('areas.create', compact('campaign_id'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
+    {
         $messages = [
-            'name.required' => 'Bạn cần nhập tên vé',
+            'name.required' => 'Bạn cần nhập tên chiến dịch',
         ];
 
         $this->validate($request,[
             'name'=>'required',
         ], $messages);
-
-        $save = Ticket::create($request->only('name','cost','validity','amount','until','campaign_id'));
-
+        $save = Area::create($request->only('name','campaign_id'));
         if($save) {
-            $campaign = Campaign::find($request->campaign_id);
-            return redirect()->route('campaign.show',$campaign);
+            return redirect()->route('campaign.index');
         } else {
             return redirect()->back();
         }
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Ticket $ticket)
+    public function show(Area $area)
     {
         //
     }
@@ -58,7 +55,7 @@ class TicketController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ticket $ticket)
+    public function edit(Area $area)
     {
         //
     }
@@ -66,7 +63,7 @@ class TicketController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ticket $ticket)
+    public function update(Request $request, Aria $area)
     {
         //
     }
@@ -74,7 +71,7 @@ class TicketController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ticket $ticket)
+    public function destroy(Area $area)
     {
         //
     }

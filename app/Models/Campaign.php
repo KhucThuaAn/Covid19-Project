@@ -14,4 +14,14 @@ class Campaign extends Model
         'date',
         'organizer_id'
     ];
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function areas()
+    {
+        return $this->hasMany(Area::class);
+    }
 }

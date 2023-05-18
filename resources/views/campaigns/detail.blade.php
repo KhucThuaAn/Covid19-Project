@@ -10,9 +10,9 @@
 
     <base href="../">
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="{{asset('assets/css/bootstrap.css')}}" rel="stylesheet">
     <!-- Custom styles -->
-    <link href="assets/css/custom.css" rel="stylesheet">
+    <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
 </head>
 
 <body>
@@ -41,7 +41,7 @@
                     <h2 class="h4">Vé</h2>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
-                            <a href="{{ route('ticket.create') }}" class="btn btn-sm btn-outline-secondary">
+                            <a href="{{ route('ticket.create', $campaign->id) }}" class="btn btn-sm btn-outline-secondary">
                                 Tạo mới vé
                             </a>
                         </div>
@@ -121,7 +121,7 @@
                     <h2 class="h4">Vùng</h2>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
-                            <a href="{{ route('areas.create') }}" class="btn btn-sm btn-outline-secondary">
+                            <a href="{{ route('area.create', $campaign->id) }}" class="btn btn-sm btn-outline-secondary">
                                 Tạo mới vùng
                             </a>
                         </div>

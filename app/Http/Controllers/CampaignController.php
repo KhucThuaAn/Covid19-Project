@@ -13,7 +13,7 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::all(); 
+        $campaigns = Campaign::where('organizer_id', auth()->user()->id)->get(); 
         return view('campaigns.index', compact('campaigns'));
     }
 
@@ -41,8 +41,9 @@ class CampaignController extends Controller
         ], $messages);
         
         // $errors = $validate->errors();
-
-        $save = Campaign::create($request->only('name','slug','date'));
+        $request['organizer_id'] = auth()->user()->id;
+        // dd($request->all());
+        $save = Campaign::create($request->only('name','slug','date','organizer_id'));
 
         if($save) {
             return redirect()->route('campaign.index');

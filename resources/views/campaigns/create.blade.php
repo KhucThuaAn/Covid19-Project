@@ -23,7 +23,7 @@
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link active" href="campaigns/index.html">Manage Campaigns</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{ route('campaign.index')}}">Manage Campaigns</a></li>
                 </ul>
             </div>
         </nav>
@@ -64,7 +64,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputDate">Thời gian</label>
-                        <input type="text" class="form-control {{ $errors->first('date') ? 'is-invalid' : ''}}" id="inputDate" name="date" placeholder="yyyy-mm-dd" value="">
+                        <input type="date" class="form-control {{ $errors->first('date') ? 'is-invalid' : ''}}" id="inputDate" name="date" placeholder="yyyy-mm-dd" value="">
                         <div class="invalid-feedback">
                             {{ $errors->first('date') }} 
                         </div>

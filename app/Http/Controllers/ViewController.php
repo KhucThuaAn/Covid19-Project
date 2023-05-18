@@ -10,9 +10,7 @@ class ViewController extends Controller
         return view('login');
     }
 
-    public function create_areas() {
-        return view('areas.create');
-    }
+    
 
     public function create_place() {
         return view('places.create');
