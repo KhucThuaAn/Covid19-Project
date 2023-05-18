@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('places', function (Blueprint $table) {
             $table->id();
             $table->text('name');
-            $table->tinyInteger('area');
+            $table->tinyInteger('area_id');
             $table->float('capacity');
             $table->timestamps();
         });

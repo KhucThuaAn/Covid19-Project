@@ -28,7 +28,8 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $save = Ticket::create($request->only('name','price','validity','amount','until',));
+        
+        $save = Ticket::create($request->only('name','cost','validity','amount','until',));
 
         if($save) {
             return redirect()->route('campaign.index');

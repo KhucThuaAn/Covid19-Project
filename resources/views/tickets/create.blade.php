@@ -72,7 +72,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputCost">Giá</label>
-                        <input type="number" class="form-control" id="inputCost" name="price" placeholder="" value="0">
+                        <input type="number" class="form-control" id="inputCost" name="cost" placeholder="" value="0">
                     </div>
                 </div>
 

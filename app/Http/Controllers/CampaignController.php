@@ -34,11 +34,13 @@ class CampaignController extends Controller
             'name.required' => 'Bạn cần nhập tên chiến dịch',
             'date.required' => 'Bạn phải nhập thời gian'
         ];
+
         $this->validate($request,[
             'name'=>'required',
             'date'=>'required'
         ], $messages);
-        $errors = $validate->errors();
+        
+        // $errors = $validate->errors();
 
         $save = Campaign::create($request->only('name','slug','date'));
 

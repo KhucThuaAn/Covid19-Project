@@ -11,6 +11,7 @@ class Campaign extends Model
     protected $fillable = [
         'name',
         'slug',
-        'date'
+        'date',
+        'organizer_id'
     ];
 }

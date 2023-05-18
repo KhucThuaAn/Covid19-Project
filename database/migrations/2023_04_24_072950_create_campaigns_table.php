@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('organizer_id');
             $table->text('name');
             $table->text('slug');
             $table->text('date');

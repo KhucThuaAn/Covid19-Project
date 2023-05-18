@@ -55,7 +55,7 @@
                     <div class="card mb-4 shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">{{ $ticket->name }}</h5>
-                            <p class="card-text">Giá vé: {{ $ticket->price }} vnđ</p>
+                            <p class="card-text">Giá vé: {{ $ticket->cost }} vnđ</p>
                             <p class="card-text">{{ $ticket->until }}</p>
                         </div>
                     </div>

@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('place_id');
             $table->text('title');
             $table->text('description');
-            $table->text('participant');
-            $table->tinyInteger('place_id');
-            $table->tinyInteger('type')->comment('0: Bình thường, 1: Dịch vụ');
-            $table->float('price', 0,15);
+            $table->text('vaccinator');
             $table->text('start');
             $table->text('end');
+            $table->tinyInteger('type')->comment('0: Bình thường, 1: Dịch vụ');
+            $table->float('cost', 0,15);
             $table->timestamps();
         });
     }

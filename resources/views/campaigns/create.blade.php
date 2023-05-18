@@ -39,6 +39,7 @@
                     <h2 class="h4">Tạo mới chiến dịch</h2>
                 </div>
             </div>
+            {{-- @dd($errors->all()[0]) --}}
 
             <form class="needs-validation" novalidate action="{{ route('campaign.store') }}" method="POST">
                 @csrf
@@ -63,9 +64,9 @@
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputDate">Thời gian</label>
-                        <input type="text" class="form-control" id="inputDate" name="date" placeholder="yyyy-mm-dd" value="">
+                        <input type="text" class="form-control {{ $errors->first('date') ? 'is-invalid' : ''}}" id="inputDate" name="date" placeholder="yyyy-mm-dd" value="">
                         <div class="invalid-feedback">
-                            {{ $errors->first('date') }}
+                            {{ $errors->first('date') }} 
                         </div>
                     </div>
                 </div>
