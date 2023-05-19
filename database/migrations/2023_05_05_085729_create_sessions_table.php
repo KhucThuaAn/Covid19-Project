@@ -17,8 +17,8 @@ return new class extends Migration
             $table->text('title');
             $table->text('description');
             $table->text('vaccinator');
-            $table->text('start');
-            $table->text('end');
+            $table->time('start');
+            $table->time('end');
             $table->tinyInteger('type')->comment('0: Bình thường, 1: Dịch vụ');
             $table->float('cost', 0,15);
             $table->timestamps();

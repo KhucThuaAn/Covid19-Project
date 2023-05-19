@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Session;
+use App\Models\Campaign;
 use Illuminate\Http\Request;
 
 class SessionController extends Controller
@@ -18,9 +19,9 @@ class SessionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Campaign $campaign)
     {
-        return view('sessions.create');
+        return view('sessions.create', compact('campaign'));
     }
 
     /**
@@ -28,7 +29,23 @@ class SessionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'title.required' => 'Bạn cần nhập tiêu đề',
+            'vaccinator.required' => 'Bạn cần nhập tên người tham gia',
+            'description.required' => 'Bạn cần nhập mô tả',
+        ];
+
+        $this->validate($request,[
+            'title'=>'required',
+            'vaccinator'=>'required',
+            'description'=>'required'
+        ], $messages);
+        $save = Session::create($request->only('title','place_id','cost','vaccinator','description','start','end','type'));
+        if($save) {
+            return redirect()->route('campaign.show', $request->campaign_id);
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**

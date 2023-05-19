@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\Campaign;
 use Illuminate\Http\Request;
 
 class AreaController extends Controller
@@ -18,9 +19,9 @@ class AreaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($campaign_id)
+    public function create(Campaign $campaign)
     {
-        return view('areas.create', compact('campaign_id'));
+        return view('areas.create', compact('campaign'));
     }
 
     /**
@@ -37,7 +38,7 @@ class AreaController extends Controller
         ], $messages);
         $save = Area::create($request->only('name','campaign_id'));
         if($save) {
-            return redirect()->route('campaign.index');
+            return redirect()->route('campaign.show', $request->campaign_id);
         } else {
             return redirect()->back();
         }

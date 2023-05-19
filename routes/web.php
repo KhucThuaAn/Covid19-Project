@@ -25,13 +25,22 @@ Route::post('/login',[LoginController::class, 'check'] )->name('login.check');
 Route::group(['middleware' => 'checklogin'], function () {
     // Quản lý vùng
     Route::resource('area', AreaController::class)->except('create');
-    Route::get('/campaigns/{campaign_id}/area/create',[AreaController::class, 'create'] )->name('area.create');
+    Route::get('/campaigns/{campaign}/area/create',[AreaController::class, 'create'] )->name('area.create');
+
+    // Quản lý phiên
+    Route::resource('session', SessionController::class)->except('create');
+    Route::get('/campaigns/{campaign}/session/create',[SessionController::class, 'create'] )->name('session.create');
+
+    // Địa điểm
+    Route::get('/campaigns/{campaign}/place/create',[PlaceController::class, 'create'] )->name('place.create');
+    Route::resource('place', PlaceController::class)->except('create');
+
+    // Vé
+    Route::resource('ticket', TicketController::class)->except('create');
+    Route::get('/campaigns/{campaign}/tickets/create',[TicketController::class, 'create'] )->name('ticket.create');
+
 
     Route::resource('campaign', CampaignController::class);
-    Route::resource('session', CampaignController::class);
-    Route::resource('ticket', TicketController::class)->except('create');
-    Route::get('/campaigns/{campaign_id}/tickets/create',[TicketController::class, 'create'] )->name('ticket.create');
-    Route::get('/places/create/{campaign}',[PlaceController::class, 'create'] )->name('place.create');
     Route::get('/logout',[LoginController::class, 'logout'] )->name('logout');
     Route::get('/report',[ViewController::class, 'report'] )->name('report');
 });

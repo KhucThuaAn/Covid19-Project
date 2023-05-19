@@ -19,9 +19,9 @@ class TicketController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($campaign_id)
+    public function create(Campaign $campaign)
     {
-        return view('tickets.create', compact('campaign_id'));
+        return view('tickets.create', compact('campaign'));
     }
 
     /**

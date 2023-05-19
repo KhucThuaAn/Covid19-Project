@@ -21,8 +21,7 @@ class PlaceController extends Controller
      */
     public function create(Campaign $campaign)
     {
-        dd($campaign->all());
-        return view('places.create');
+        return view('places.create', compact('campaign'));
     }
 
     /**
@@ -30,7 +29,21 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $messages = [
+            'name.required' => 'Bạn cần nhập tên địa điểm',
+            'capacity.required' => 'Bạn cần nhập sức chứa địa điểm',
+        ];
+
+        $this->validate($request,[
+            'name'=>'required',
+            'capacity'=>'required'
+        ], $messages);
+        $save = Place::create($request->only('name','area_id','capacity'));
+        if($save) {
+            return redirect()->route('campaign.show', $request->campaign_id);
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**

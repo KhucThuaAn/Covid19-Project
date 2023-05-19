@@ -20,75 +20,60 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-            <div class="sidebar-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="campaigns/index.html">Manage Campaigns</a></li>
-                </ul>
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>{insert campaign name}</span>
-                </h6>
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="campaigns/detail.html">Overview</a></li>
-                </ul>
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Reports</span>
-                </h6>
-                <ul class="nav flex-column mb-2">
-                    <li class="nav-item"><a class="nav-link" href="reports/index.html">Place capacity</a></li>
-                </ul>
-            </div>
-        </nav>
+        @include('layouts.sidebar')
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="border-bottom mb-3 pt-3 pb-2">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-                    <h1 class="h2">{insert campaign name}</h1>
+                    <h1 class="h2">{{ $campaign->name}}</h1>
                 </div>
-                <span class="h6">{insert campaign date}</span>
+                <span class="h6">{{ $campaign->date}}</span>
             </div>
 
             <div class="mb-3 pt-3 pb-2">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-                    <h2 class="h4">Create new Place</h2>
+                    <h2 class="h4">Tạo mới địa điểm</h2>
                 </div>
             </div>
 
-            <form class="needs-validation" novalidate action="campaigns/detail.html">
-
+            <form class="needs-validation" novalidate action="{{ route('place.store')}}" method="POST">
+                @csrf
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
-                        <label for="inputName">Name</label>
+                        <label for="inputName">Tên địa điểm</label>
                         <!-- adding the class is-invalid to the input, shows the invalid feedback below -->
-                        <input type="text" class="form-control is-invalid" id="inputName" name="name" placeholder="" value="">
+                        <input type="text" class="form-control {{ $errors->first('name') ? 'is-invalid' : ''}}" id="inputName" name="name" placeholder="" value="">
                         <div class="invalid-feedback">
-                            Name is required.
+                            {{ $errors->first('name') }}
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
-                        <label for="selectChannel">Area</label>
-                        <select class="form-control" id="selectChannel" name="channel">
-                            <option value="1">Main</option>
-                            <option value="2">Side</option>
+                        <label for="selectChannel">Vùng</label>
+                        <select class="form-control" id="selectChannel" name="area_id">
+                            @foreach ($campaign->areas as $area)
+                            <option value="{{ $area->id }}">{{ $area->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
-                        <label for="inputCapacity">Capacity</label>
-                        <input type="number" class="form-control" id="inputCapacity" name="capacity" placeholder="" value="">
+                        <label for="inputCapacity">Sức chứa</label>
+                        <input type="number" class="form-control {{ $errors->first('capacity') ? 'is-invalid' : ''}}" id="inputCapacity" name="capacity" placeholder="" value="">
+                        <div class="invalid-feedback">
+                            {{ $errors->first('capacity') }}
+                        </div>
+                        <input type="number"   name="campaign_id"  value="{{ $campaign->id}}" hidden>
                     </div>
                 </div>
 
                 <hr class="mb-4">
-                <button class="btn btn-primary" type="submit">Save place</button>
-                <a href="campaigns/detail.html" class="btn btn-link">Cancel</a>
+                <button class="btn btn-primary" type="submit">Lưu</button>
+                <a href="{{ route('campaign.show', $campaign->id)}}" class="btn btn-link">Quay lại</a>
             </form>
 
         </main>

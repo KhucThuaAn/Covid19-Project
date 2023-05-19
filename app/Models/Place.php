@@ -22,6 +22,6 @@ class Place extends Model
 
     public function sessions()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasMany(Session::class);
     }
 }

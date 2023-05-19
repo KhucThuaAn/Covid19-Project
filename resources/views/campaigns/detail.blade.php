@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CVC Backend</title>
+    <title>Chi tiết chiến dịch</title>
 
     <base href="../">
     <!-- Bootstrap core CSS -->
@@ -41,7 +41,7 @@
                     <h2 class="h4">Vé</h2>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
-                            <a href="{{ route('ticket.create', $campaign->id) }}" class="btn btn-sm btn-outline-secondary">
+                            <a href="{{ route('ticket.create', $campaign) }}" class="btn btn-sm btn-outline-secondary">
                                 Tạo mới vé
                             </a>
                         </div>
@@ -50,13 +50,23 @@
             </div>
 
             <div class="row tickets">
-                @foreach ($tickets as $ticket)
+                @if($campaign->tickets->count()===0)
+                <div class="col-md-4">
+                    <h6>Chưa có vé được tạo</h6>
+                </div>
+                @endif
+                @foreach ($campaign->tickets as $ticket)
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">{{ $ticket->name }}</h5>
-                            <p class="card-text">Giá vé: {{ $ticket->cost }} vnđ</p>
-                            <p class="card-text">{{ $ticket->until }}</p>
+                            <p class="card-text">Giá vé: {{ number_format($ticket->cost, 0, ',', '.') }} vnđ</p>
+                            @if ( $ticket->amount>0 )
+                            <p class="card-text">Còn {{ $ticket->amount }} vé</p>
+                            @else
+                            <p class="card-text">{{ $ticket->until ? 'Bán đến ngày: '.$ticket->until : "Số lượng không giới hạn"}}</p>
+                            @endif
+                            
                         </div>
                     </div>
                 </div>
@@ -70,7 +80,7 @@
                     <h2 class="h4">Phiên</h2>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
-                            <a href="{{ route('session.create') }}" class="btn btn-sm btn-outline-secondary">
+                            <a href="{{ route('session.create', $campaign) }}" class="btn btn-sm btn-outline-secondary">
                                 Tạo mới phiên
                             </a>
                         </div>
@@ -82,35 +92,28 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Time</th>
-                        <th>Type</th>
-                        <th class="w-100">Title</th>
-                        <th>Participant</th>
-                        <th>Area</th>
+                        <th>Thời gian</th>
+                        <th width="10%">Kiểu</th>
+                        <th width="70%">Tiêu đề</th>
+                        <th width="25%">Người tham gia</th>
+                        <th>Vùng</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="text-nowrap">08:30 - 10:00</td>
-                        <td>Normal</td>
-                        <td><a href="sessions/edit.html">Keynote</a></td>
-                        <td class="text-nowrap">An important person</td>
-                        <td class="text-nowrap">Main / Place A</td>
-                    </tr>
-                    <tr>
-                        <td class="text-nowrap">10:15 - 11:00</td>
-                        <td>Normal</td>
-                        <td><a href="sessions/edit.html">What's new in X?</a></td>
-                        <td class="text-nowrap">Another person</td>
-                        <td class="text-nowrap">Main / Place A</td>
-                    </tr>
-                    <tr>
-                        <td class="text-nowrap">10:15 - 11:00</td>
-                        <td>Service</td>
-                        <td><a href="sessions/edit.html">Hands-on with Y</a></td>
-                        <td class="text-nowrap">Another person</td>
-                        <td class="text-nowrap">Side / Place C</td>
-                    </tr>
+                    @foreach ($campaign->areas as $area)
+                        @foreach ($area->places as $place)
+                            @foreach ($place->sessions as $session)
+                            <tr>
+                                <td class="text-nowrap">{{substr($session->start, 0, 5).' - '.substr($session->end, 0, 5)}}</td>
+                                <td>{{ $session->type==0 ? 'Bình thường' : 'Dịch vụ' }}</td>
+                                <td><a href="sessions/edit.html">{{ $session->title }}</a></td>
+                                <td class="text-nowrap">{{ $session->vaccinator }}</td>
+                                <td class="text-nowrap">{{ $session->place->name. ' / '.$session->place->area->name }}</td>
+                            </tr>
+                            @endforeach 
+                        @endforeach   
+                    @endforeach     
+                   
                     </tbody>
                 </table>
             </div>
@@ -130,22 +133,16 @@
             </div>
 
             <div class="row channels">
+                @foreach ($campaign->areas as $area)
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title">Main</h5>
-                            <p class="card-text">3 sessions, 1 palce</p>
+                            <h5 class="card-title">{{ $area->name }}</h5>
+                            <p class="card-text">{{ $area->places->count() }} địa điểm</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Side</h5>
-                            <p class="card-text">15 sessions, 2 places</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <!-- Palces -->
@@ -171,22 +168,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Place A</td>
-                        <td>1,000</td>
-                    </tr>
-                    <tr>
-                        <td>Place B</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>Place C</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>Place D</td>
-                        <td>250</td>
-                    </tr>
+                    @foreach ($campaign->areas as $area)
+                        @foreach ($area->places as $place)
+                            <tr>
+                                <td>{{ $place->name}}</td>
+                                <td>{{ $place->capacity}}</td>
+                            </tr>
+                        @endforeach   
+                    @endforeach  
                     </tbody>
                 </table>
             </div>
