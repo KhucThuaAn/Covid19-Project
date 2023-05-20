@@ -56,9 +56,9 @@
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="name">Tên</label>
                         <!-- adding the class is-invalid to the input, shows the invalid feedback below -->
-                        <input type="text" class="form-control is-invalid" id="name" placeholder="" value="{{ $campaign->name }}" name="name">
+                        <input type="text" class="form-control {{ $errors->first('name') ? 'is-invalid' : ''}}" id="name" placeholder="" value="{{ $campaign->name }}" name="name">
                         <div class="invalid-feedback">
-                           Tên là trường bắt buộc.
+                            {{ $errors->first('name') }}
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
 
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
-                        <label for="inputDate">Date</label>
+                        <label for="inputDate">Thời gian</label>
                         <input type="text" class="form-control" id="inputDate" placeholder="yyyy-mm-dd" value="{{ $campaign->date }}" name="date">
                     </div>
                 </div>

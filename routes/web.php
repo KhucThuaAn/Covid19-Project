@@ -28,8 +28,9 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::get('/campaigns/{campaign}/area/create',[AreaController::class, 'create'] )->name('area.create');
 
     // Quản lý phiên
-    Route::resource('session', SessionController::class)->except('create');
+    Route::resource('session', SessionController::class)->except('create','edit');
     Route::get('/campaigns/{campaign}/session/create',[SessionController::class, 'create'] )->name('session.create');
+    Route::get('/campaigns/{campaign}/session/edit/{session}',[SessionController::class, 'edit'] )->name('session.edit');
 
     // Địa điểm
     Route::get('/campaigns/{campaign}/place/create',[PlaceController::class, 'create'] )->name('place.create');

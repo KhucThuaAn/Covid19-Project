@@ -32,11 +32,13 @@ class CampaignController extends Controller
     {
         $messages = [
             'name.required' => 'Bạn cần nhập tên chiến dịch',
+            'slug.unique' => 'Slug đã bị trùng, bạn cần nhập tên chiến dịch khác',
             'date.required' => 'Bạn phải nhập thời gian'
         ];
 
         $this->validate($request,[
             'name'=>'required',
+            'slug'=>'required|unique:campaigns,slug',
             'date'=>'required'
         ], $messages);
         

@@ -93,7 +93,7 @@
                     <thead>
                     <tr>
                         <th>Thời gian</th>
-                        <th width="10%">Kiểu</th>
+                        <th width="10%">Loại</th>
                         <th width="70%">Tiêu đề</th>
                         <th width="25%">Người tham gia</th>
                         <th>Vùng</th>
@@ -106,7 +106,7 @@
                             <tr>
                                 <td class="text-nowrap">{{substr($session->start, 0, 5).' - '.substr($session->end, 0, 5)}}</td>
                                 <td>{{ $session->type==0 ? 'Bình thường' : 'Dịch vụ' }}</td>
-                                <td><a href="sessions/edit.html">{{ $session->title }}</a></td>
+                                <td><a href="{{ route('session.edit', ['campaign' => $campaign, 'session' => $session])}}">{{ $session->title }}</a></td>
                                 <td class="text-nowrap">{{ $session->vaccinator }}</td>
                                 <td class="text-nowrap">{{ $session->place->name. ' / '.$session->place->area->name }}</td>
                             </tr>

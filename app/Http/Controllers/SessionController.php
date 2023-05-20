@@ -59,9 +59,9 @@ class SessionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Session $session)
+    public function edit( Campaign $campaign ,Session $session)
     {
-        return view('sessions.edit');
+        return view('sessions.edit', compact('session', 'campaign'));
     }
 
     /**
@@ -69,7 +69,23 @@ class SessionController extends Controller
      */
     public function update(Request $request, Session $session)
     {
-        //
+        $messages = [
+            'title.required' => 'Bạn cần nhập tiêu đề',
+            'vaccinator.required' => 'Bạn cần nhập tên người tham gia',
+            'description.required' => 'Bạn cần nhập mô tả',
+        ];
+
+        $this->validate($request,[
+            'title'=>'required',
+            'vaccinator'=>'required',
+            'description'=>'required'
+        ], $messages);
+        $save = $session->update($request->only('title','place_id','cost','vaccinator','description','start','end','type'));
+        if($save) {
+            return redirect()->route('campaign.show', $request->campaign_id);
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
