@@ -33,8 +33,12 @@
                 <label for="inputPassword" class="sr-only">Mật khẩu</label>
                 <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password">
                 <button class="btn btn-lg btn-primary btn-block" id="login" type="submit">Đăng nhập</button>
+                @if($errors->has('login'))
+                    <div class="alert alert-danger mt-3">
+                        {{ $errors->first('login') }}
+                    </div>
+                @endif
             </form>
-
         </main>
     </div>
 </div>

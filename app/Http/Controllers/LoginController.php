@@ -11,7 +11,8 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->route('campaign.index');
         } else {
-            return redirect()->back();
+            return redirect()->back()->withErrors(['login' => 'Sai email hoặc mật khẩu']);
+            
         }
     }
 
