@@ -42,7 +42,7 @@
                 @foreach ($campaigns as $campaign)
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <a href="{{ route('campaign.show', $campaign)}}" class="btn text-left campaign">
+                            <a href="{{ route('campaign.show', $campaign->slug)}}" class="btn text-left campaign">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $campaign->name }}</h5>
                                     <p class="card-subtitle">{{ $campaign->date }}</p>

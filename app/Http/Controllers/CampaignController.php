@@ -57,9 +57,10 @@ class CampaignController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Campaign $campaign)
+    public function show($slug)
     {
         $tickets = Ticket::all();
+        $campaign = Campaign::where('slug', $slug)->first();
         
         return view('campaigns.detail', compact('campaign','tickets'));
     }

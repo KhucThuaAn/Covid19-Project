@@ -8,6 +8,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\CapacityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +41,14 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::resource('ticket', TicketController::class)->except('create');
     Route::get('/campaigns/{campaign}/tickets/create',[TicketController::class, 'create'] )->name('ticket.create');
 
+    // Chiến dịch
+    Route::get('/campaign/{slug}', [CampaignController::class, 'show'])->name('campaign.show');
+    Route::resource('campaign', CampaignController::class)->except('show');
 
-    Route::resource('campaign', CampaignController::class);
     Route::get('/logout',[LoginController::class, 'logout'] )->name('logout');
     Route::get('/report',[ViewController::class, 'report'] )->name('report');
+
+    // Biểu đồ
+    Route::get('campaign/{slug}/capacity', [CapacityController::class, 'index'] )->name('campaign.capacity');
+
 });

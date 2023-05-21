@@ -10,9 +10,9 @@
 
     <base href="../">
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="{{asset('assets/css/bootstrap.css')}}" rel="stylesheet">
     <!-- Custom styles -->
-    <link href="assets/css/custom.css" rel="stylesheet">
+    <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
 </head>
 
 <body>
@@ -20,44 +20,93 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-            <div class="sidebar-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('campaign.index') }}">Manage Campaigns</a></li>
-                </ul>
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>{insert campaign name}</span>
-                </h6>
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="">Overview</a></li>
-                </ul>
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Reports</span>
-                </h6>
-                <ul class="nav flex-column mb-2">
-                    <li class="nav-item"><a class="nav-link active" href="{{ route('report') }}">Place capacity</a></li>
-                </ul>
-            </div>
-        </nav>
+        @include('layouts.sidebar')
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="border-bottom mb-3 pt-3 pb-2">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-                    <h1 class="h2">{insert campaign name}</h1>
+                    <h1 class="h2">{{ $campaign->name }}</h1>
                 </div>
-                <span class="h6">{insert campaign date}</span>
+                <span class="h6">{{ $campaign->date }}</span>
             </div>
 
             <div class="mb-3 pt-3 pb-2">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-                    <h2 class="h4">Place Capacity</h2>
+                    <h2 class="h4">Sức chứa địa điểm</h2>
                 </div>
             </div>
 
             <!-- TODO create chart here -->
-
+            <canvas id="myChart" width="400" height="200"></canvas>
+                <script src="{{asset('assets\js\Chart.bundle.min.js')}}"></script>
+                {{-- <script>
+                var ctx = document.getElementById('myChart');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [
+                            @foreach($campaign->getSes() as $ses)
+                            '{{$ses->title}}',
+                            @endforeach
+                        ],
+                        datasets: [{
+                            label: 'Attendee',
+                            data: [@foreach($campaign->getSes() as $ses)
+                            '{{$ses->getAtte()}}',
+                            @endforeach],
+                            backgroundColor: [@foreach($campaign->getSes() as $ses)
+                                @if($ses->getAtte() < $ses->place->capacity)
+                                '#cce0ad',
+                                @else
+                                '#f1a89f',
+                                @endif
+                            @endforeach
+                            ]
+                        },
+                        {
+                            label: 'Capacity',
+                            data: [
+                                @foreach($campaign->getSes() as $ses)
+                                '{{$ses->place->capacity}}',
+                            @endforeach
+                            ],
+                            backgroundColor: [
+                                @foreach($campaign->getSes() as $ses)
+                                '#a3c8fc',
+                            @endforeach
+                            ]
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                },
+                                gridLines:{
+                                    display:false
+                                },
+                                scaleLabel: {
+                                    display:true,
+                                    labelString: "Capacity"
+                                }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                },
+                                scaleLabel: {
+                                    display:true,
+                                    labelString: "Sessions"
+                                }
+                            }]
+                        },
+                        legend:{
+                            position: "right"
+                        }
+                    }
+                });
+                </script> --}}
         </main>
     </div>
 </div>

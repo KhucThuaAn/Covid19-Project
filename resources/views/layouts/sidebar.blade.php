@@ -15,7 +15,7 @@
             <span>Báo cáo</span>
         </h6>
         <ul class="nav flex-column mb-2">
-            <li class="nav-item"><a class="nav-link" href="{{ route('report') }}">Sức chứa địa điểm</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('campaign.capacity', $campaign->slug) }}">Sức chứa địa điểm</a></li>
         </ul>
     </div>
 </nav>
