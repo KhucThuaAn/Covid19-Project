@@ -42,8 +42,8 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::get('/campaigns/{campaign}/tickets/create',[TicketController::class, 'create'] )->name('ticket.create');
 
     // Chiến dịch
-    Route::get('/campaign/{slug}', [CampaignController::class, 'show'])->name('campaign.show');
     Route::resource('campaign', CampaignController::class)->except('show');
+    Route::get('/campaign/{slug}', [CampaignController::class, 'show'])->name('campaign.show');
 
     Route::get('/logout',[LoginController::class, 'logout'] )->name('logout');
     Route::get('/report',[ViewController::class, 'report'] )->name('report');

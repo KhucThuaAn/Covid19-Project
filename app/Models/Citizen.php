@@ -4,25 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Campaign;
 
-class Ticket extends Model
+class Citizen extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'cost',
-        'validity',
-        'amount',
-        'until',
-        'campaign_id'
+        'first_name',
+        'last_name',
+        'username',
+        'email',
+        'registration_code',
+        'login_token',
     ];
     
-    public function campaign()
-    {
-        return $this->belongsTo(Campaign::class);
-    }
-
     public function registrations()
     {
         return $this->hasMany(Registration::class);

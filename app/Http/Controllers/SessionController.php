@@ -31,7 +31,7 @@ class SessionController extends Controller
     {
         $messages = [
             'title.required' => 'Bạn cần nhập tiêu đề',
-            'vaccinator.required' => 'Bạn cần nhập tên người tham gia',
+            'vaccinator.required' => 'Bạn cần nhập tên bác sĩ tiêm',
             'description.required' => 'Bạn cần nhập mô tả',
         ];
 
@@ -42,7 +42,7 @@ class SessionController extends Controller
         ], $messages);
         $save = Session::create($request->only('title','place_id','cost','vaccinator','description','start','end','type'));
         if($save) {
-            return redirect()->route('campaign.show', $request->campaign_id);
+            return redirect()->route('campaign.show', $request->campaign_slug);
         } else {
             return redirect()->back();
         }
@@ -71,7 +71,7 @@ class SessionController extends Controller
     {
         $messages = [
             'title.required' => 'Bạn cần nhập tiêu đề',
-            'vaccinator.required' => 'Bạn cần nhập tên người tham gia',
+            'vaccinator.required' => 'Bạn cần nhập tên bác sĩ tiêm',
             'description.required' => 'Bạn cần nhập mô tả',
         ];
 
@@ -82,7 +82,7 @@ class SessionController extends Controller
         ], $messages);
         $save = $session->update($request->only('title','place_id','cost','vaccinator','description','start','end','type'));
         if($save) {
-            return redirect()->route('campaign.show', $request->campaign_id);
+            return redirect()->route('campaign.show', $request->campaign_slug);
         } else {
             return redirect()->back();
         }

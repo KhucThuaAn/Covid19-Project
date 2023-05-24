@@ -95,7 +95,7 @@
                         <th>Thời gian</th>
                         <th width="10%">Loại</th>
                         <th width="70%">Tiêu đề</th>
-                        <th width="25%">Người tham gia</th>
+                        <th width="25%">Bác sĩ tiêm</th>
                         <th>Vùng</th>
                     </tr>
                     </thead>

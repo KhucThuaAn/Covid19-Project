@@ -40,7 +40,7 @@ class PlaceController extends Controller
         ], $messages);
         $save = Place::create($request->only('name','area_id','capacity'));
         if($save) {
-            return redirect()->route('campaign.show', $request->campaign_id);
+            return redirect()->route('campaign.show', $request->campaign_slug);
         } else {
             return redirect()->back();
         }

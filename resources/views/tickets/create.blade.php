@@ -81,7 +81,8 @@
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputValidTill">Vé có thể được bán cho đến khi</label>
                         <input type="date" class="form-control" id="inputValidTill" name="until" placeholder="yyyy-mm-dd HH:MM" value="">
-                        <input type="number" class="form-control" id="" name="campaign_id" placeholder="yyyy-mm-dd HH:MM" value="{{$campaign->id}}" hidden>
+                        <input type="number" name="campaign_id"  value="{{$campaign->id}}" hidden>
+                        <input type="text" name="campaign_slug" value="{{$campaign->slug}}" hidden>
                     </div>
                 </div>
 

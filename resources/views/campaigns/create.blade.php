@@ -39,7 +39,6 @@
                     <h2 class="h4">Tạo mới chiến dịch</h2>
                 </div>
             </div>
-            {{-- @dd($errors->all()[0]) --}}
 
             <form class="needs-validation" novalidate action="{{ route('campaign.store') }}" method="POST">
                 @csrf

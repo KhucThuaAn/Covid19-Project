@@ -13,6 +13,8 @@
     <link href="{{asset('assets/css/bootstrap.css')}}" rel="stylesheet">
     <!-- Custom styles -->
     <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
+    {{-- <script src='https://cdn.plot.ly/plotly-2.20.0.min.js'></script> --}}
+    <script src="{{asset('assets\js\Chart.bundle.min.js')}}"></script>
 </head>
 
 <body>
@@ -37,76 +39,67 @@
             </div>
 
             <!-- TODO create chart here -->
-            <canvas id="myChart" width="400" height="200"></canvas>
-                <script src="{{asset('assets\js\Chart.bundle.min.js')}}"></script>
-                {{-- <script>
-                var ctx = document.getElementById('myChart');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: [
-                            @foreach($campaign->getSes() as $ses)
-                            '{{$ses->title}}',
-                            @endforeach
-                        ],
-                        datasets: [{
-                            label: 'Attendee',
-                            data: [@foreach($campaign->getSes() as $ses)
-                            '{{$ses->getAtte()}}',
-                            @endforeach],
-                            backgroundColor: [@foreach($campaign->getSes() as $ses)
-                                @if($ses->getAtte() < $ses->place->capacity)
-                                '#cce0ad',
-                                @else
-                                '#f1a89f',
-                                @endif
-                            @endforeach
-                            ]
-                        },
-                        {
-                            label: 'Capacity',
-                            data: [
-                                @foreach($campaign->getSes() as $ses)
-                                '{{$ses->place->capacity}}',
-                            @endforeach
-                            ],
-                            backgroundColor: [
-                                @foreach($campaign->getSes() as $ses)
-                                '#a3c8fc',
-                            @endforeach
-                            ]
-                        }]
+            <div id="container" style="width: 75%;">
+                <canvas id="canvas"></canvas>
+            </div>
+            <script>
+            var barChartData = {
+                labels: [
+                    "Absence of OB",
+                    "Closeness",
+                    "Credibility",
+                    "Heritage",
+                    "M Disclosure",
+                    "Provenance",
+                    "Reliability",
+                    "Transparency"
+                ],
+                datasets: [
+                    {
+                    label: "American Express",
+                    backgroundColor: "#20c997",
+                    borderColor: "#28a745",
+                    borderWidth: 1,
+                    data: [3, 5, 6, 7,3, 5, 6, 7]
                     },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                },
-                                gridLines:{
-                                    display:false
-                                },
-                                scaleLabel: {
-                                    display:true,
-                                    labelString: "Capacity"
-                                }
-                            }],
-                            xAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                },
-                                scaleLabel: {
-                                    display:true,
-                                    labelString: "Sessions"
-                                }
-                            }]
-                        },
-                        legend:{
-                            position: "right"
-                        }
+                    {
+                    label: "Visa",
+                    backgroundColor: "#17a2b8",
+                    borderColor: "#007bff",
+                    borderWidth: 1,
+                    data: [6,9,7,3,10,7,4,6]
                     }
+                ]
+                };
+
+                var chartOptions = {
+                responsive: true,
+                legend: {
+                    position: "top"
+                },
+                title: {
+                    display: true,
+                    text: "Chart.js Bar Chart"
+                },
+                scales: {
+                    yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                    }]
+                }
+                }
+
+                window.onload = function() {
+                var ctx = document.getElementById("canvas").getContext("2d");
+                window.myBar = new Chart(ctx, {
+                    type: "bar",
+                    data: barChartData,
+                    options: chartOptions
                 });
-                </script> --}}
+                };
+
+            </script>
         </main>
     </div>
 </div>

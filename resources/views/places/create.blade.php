@@ -67,7 +67,8 @@
                         <div class="invalid-feedback">
                             {{ $errors->first('capacity') }}
                         </div>
-                        <input type="number"   name="campaign_id"  value="{{ $campaign->id}}" hidden>
+                        <input type="number"  name="campaign_id" value="{{ $campaign->id}}" hidden>
+                        <input type="text"  name="campaign_slug" value="{{ $campaign->slug}}" hidden>
                     </div>
                 </div>
 

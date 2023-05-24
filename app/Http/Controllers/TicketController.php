@@ -41,7 +41,7 @@ class TicketController extends Controller
 
         if($save) {
             $campaign = Campaign::find($request->campaign_id);
-            return redirect()->route('campaign.show',$campaign);
+            return redirect()->route('campaign.show',$campaign->slug);
         } else {
             return redirect()->back();
         }

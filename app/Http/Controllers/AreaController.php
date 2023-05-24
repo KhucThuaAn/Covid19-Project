@@ -38,7 +38,7 @@ class AreaController extends Controller
         ], $messages);
         $save = Area::create($request->only('name','campaign_id'));
         if($save) {
-            return redirect()->route('campaign.show', $request->campaign_id);
+            return redirect()->route('campaign.show', $request->campaign_slug);
         } else {
             return redirect()->back();
         }

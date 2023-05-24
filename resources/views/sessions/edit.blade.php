@@ -62,7 +62,7 @@
 
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
-                        <label for="inputParticipant">Người tham gia</label>
+                        <label for="inputParticipant">Bác sĩ tiêm</label>
                         <input type="text" class="form-control {{ $errors->first('vaccinator') ? 'is-invalid' : ''}}" id="inputParticipant" name="vaccinator" value="{{ $session->vaccinator }}" >
                         <div class="invalid-feedback">
                             {{ $errors->first('vaccinator') }}
@@ -100,6 +100,7 @@
                         <label for="inputEnd">End</label>
                         <input type="time" class="form-control" id="inputEnd" name="end" placeholder="yyyy-mm-dd HH:MM" value="{{ $session->end }}">
                         <input type="number"  name="campaign_id" value="{{$campaign->id}}" hidden>
+                        <input type="text"  name="campaign_slug" value="{{$campaign->slug}}" hidden>
                     </div>
                 </div>
 

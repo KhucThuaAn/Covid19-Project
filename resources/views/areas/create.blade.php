@@ -44,6 +44,7 @@
                         <!-- adding the class is-invalid to the input, shows the invalid feedback below -->
                         <input type="text" class="form-control {{ $errors->first('name') ? 'is-invalid' : ''}} " id="inputName" name="name" placeholder="" value="">
                         <input type="number"  name="campaign_id"  value="{{ $campaign->id }}" hidden>
+                        <input type="text"  name="campaign_slug"  value="{{ $campaign->slug }}" hidden>
                         <div class="invalid-feedback">
                             {{ $errors->first('name') }}
                         </div>
