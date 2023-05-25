@@ -23,7 +23,7 @@ class RegistrationSeeder extends Seeder
             for ($i = 0; $i < $registrationCount; $i++) {
                 $citizen = $citizens->random();
                 
-                $ticket->registrations()->create([
+                $ticket->registrations()->updateOrCreate([
                     'citizen_id' => $citizen->id,
                     'ticket_id' => $ticket->id,
                     'registration_time' => '2021-08-11 11:37:12',

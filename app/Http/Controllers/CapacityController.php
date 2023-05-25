@@ -15,19 +15,14 @@ class CapacityController extends Controller
             foreach ($area->places as $place) {
                 foreach ($place->sessions as $session) {
                     $chartData[] = [
-                        'session_name' => $session->name,
+                        'session_name' => $session->title,
                         'capacity' => $session->place->capacity,
-                        'registered' => $session->registered_users_count,
+                        'registered' => $session->session_registrations->count(),
                     ];
                 }
             }
         }
 
-        $chartData[] = [
-            'session_name' => $session->name,
-            'capacity' => $session->location->capacity,
-            'registered' => $session->registered_users_count,
-        ];
         return view('reports.index', compact('campaign','chartData'));
     }
 }

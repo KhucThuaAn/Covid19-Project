@@ -39,66 +39,63 @@
             </div>
 
             <!-- TODO create chart here -->
-            <div id="container" style="width: 75%;">
-                <canvas id="canvas"></canvas>
-            </div>
+            <canvas id="sessionChart" style="width:400px !important; max-width:1200px"></canvas>
+            {{-- <div class="mb-3 pt-3 pb-2">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+                    <h2 class="h5">Các phiên</h2>
+                </div>
+            </div> --}}
             <script>
-            var barChartData = {
-                labels: [
-                    "Absence of OB",
-                    "Closeness",
-                    "Credibility",
-                    "Heritage",
-                    "M Disclosure",
-                    "Provenance",
-                    "Reliability",
-                    "Transparency"
-                ],
-                datasets: [
-                    {
-                    label: "American Express",
-                    backgroundColor: "#20c997",
-                    borderColor: "#28a745",
-                    borderWidth: 1,
-                    data: [3, 5, 6, 7,3, 5, 6, 7]
-                    },
-                    {
-                    label: "Visa",
-                    backgroundColor: "#17a2b8",
-                    borderColor: "#007bff",
-                    borderWidth: 1,
-                    data: [6,9,7,3,10,7,4,6]
-                    }
-                ]
-                };
+                var chartData = {!! json_encode($chartData) !!};
 
-                var chartOptions = {
-                responsive: true,
-                legend: {
-                    position: "top"
-                },
-                title: {
-                    display: true,
-                    text: "Chart.js Bar Chart"
-                },
-                scales: {
-                    yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                    }]
-                }
-                }
-
-                window.onload = function() {
-                var ctx = document.getElementById("canvas").getContext("2d");
-                window.myBar = new Chart(ctx, {
-                    type: "bar",
-                    data: barChartData,
-                    options: chartOptions
+                var labels = chartData.map(function(item) {
+                    return item.session_name;
                 });
-                };
 
+                var capacityData = chartData.map(function(item) {
+                    return item.capacity;
+                });
+
+                var registeredData = chartData.map(function(item) {
+                    return item.registered;
+                });
+
+                var ctx = document.getElementById('sessionChart').getContext('2d');
+
+                var chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Sức chứa',
+                                data: capacityData,
+                                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Lượt đăng ký',
+                                data: registeredData,
+                                backgroundColor: registeredData.map((value, index) => value > capacityData[index] ? '#dc3545b3' : '#28a745b8'),
+                                borderColor: registeredData.map((value, index) => value > capacityData[index] ? '#dc3545' : '#28a745'),
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }],
+                            x: {
+                                stacked: true
+                            }
+                        }
+                    }
+                });
             </script>
         </main>
     </div>

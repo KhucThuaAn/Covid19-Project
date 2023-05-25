@@ -9,4 +9,8 @@ class ViewController extends Controller
     public function report() {
         return view('reports.index');
     }
+
+    public function login() {
+        return view('login');
+    }
 }
