@@ -96,6 +96,7 @@ function slugify(text) {
     .replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o')
     .replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u')
     .replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y')         // Loại bỏ dấu gạch ngang ở cuối chuỗi
+    .replace(/đ/gi, 'd')         // Thay đ bằng d
     .replace(/\s+/g, '-')         // Thay thế khoảng trắng bằng dấu gạch ngang
     .replace(/[^\w\-]+/g, '')    // Loại bỏ tất cả các ký tự không phải chữ cái, số, dấu gạch ngang
     .replace(/\-\-+/g, '-')       // Thay thế 2 dấu gạch ngang liên tiếp bằng 1 dấu gạch ngang

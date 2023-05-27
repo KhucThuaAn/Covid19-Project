@@ -20,6 +20,11 @@ class Campaign extends Model
         return $this->hasMany(Ticket::class);
     }
 
+    public function registrations()
+    {
+        return $this->hasMany(SessionRegistration::class);
+    }
+
     public function areas()
     {
         return $this->hasMany(Area::class);

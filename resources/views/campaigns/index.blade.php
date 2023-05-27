@@ -47,7 +47,7 @@
                                     <h5 class="card-title">{{ $campaign->name }}</h5>
                                     <p class="card-subtitle">{{ $campaign->date }}</p>
                                     <hr>
-                                    <p class="card-text">3,546 registrations</p>
+                                    <p class="card-text">{{ $campaign->registrations->count() }} registrations</p>
                                 </div>
                             </a>
                         </div>

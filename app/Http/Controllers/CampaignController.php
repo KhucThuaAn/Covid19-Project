@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Models\Ticket;
+use App\Models\SessionRegistration;
 use Illuminate\Http\Request;
 
 class CampaignController extends Controller
@@ -13,8 +14,10 @@ class CampaignController extends Controller
      */
     public function index()
     {
+        
+        $registrations = SessionRegistration::all()->count();
         $campaigns = Campaign::where('organizer_id', auth()->user()->id)->get(); 
-        return view('campaigns.index', compact('campaigns'));
+        return view('campaigns.index', compact('campaigns','registrations'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Session;
 
 class SessionSeeder extends Seeder 
 {    /**
@@ -18,7 +19,7 @@ class SessionSeeder extends Seeder
                 'title' => 'Phiên tiêm chủng thứ nhất',
                 'description' => 'Mô tả 1',
                 'vaccinator' => 'Khúc Thừa An',
-                'start' => '00:00;00',
+                'start' => '00:00:00',
                 'end' => '23:59:59',
                 'type' => '0',
                 'cost' => '100000',
@@ -29,7 +30,7 @@ class SessionSeeder extends Seeder
                 'title' => 'Thi tốt nghiệp cao đẳng',
                 'description' => 'Mô tả 2',
                 'vaccinator' => 'Khúc Thừa An',
-                'start' => '00:00;00',
+                'start' => '00:00:00',
                 'end' => '23:59:59',
                 'type' => '0',
                 'cost' => '190000',
@@ -40,7 +41,7 @@ class SessionSeeder extends Seeder
                 'title' => 'Vé VIP',
                 'description' => 'Tổng kết năm học',
                 'vaccinator' => 'Khúc Thừa An',
-                'start' => '00:00;00',
+                'start' => '00:00:00',
                 'end' => '23:59:59',
                 'type' => '0',
                 'cost' => '300000',
@@ -51,7 +52,7 @@ class SessionSeeder extends Seeder
                 'title' => 'Viết báo cáo thực tập',
                 'description' => 'Mô tả 4',
                 'vaccinator' => 'Khúc Thừa An',
-                'start' => '00:00;00',
+                'start' => '00:00:00',
                 'end' => '23:59:59',
                 'type' => '0',
                 'cost' => '400000',
@@ -62,7 +63,7 @@ class SessionSeeder extends Seeder
                 'title' => 'Thi tay nghề quốc tế',
                 'description' => 'Mô tả 5',
                 'vaccinator' => 'Khúc Thừa An',
-                'start' => '00:00;00',
+                'start' => '00:00:00',
                 'end' => '23:59:59',
                 'type' => '0',
                 'cost' => '999000',
@@ -72,7 +73,7 @@ class SessionSeeder extends Seeder
 
 
         foreach ($items as $item) {
-            Ticket::updateOrCreate(['id' => $item['id']], $item); 
+            Session::updateOrCreate(['id' => $item['id']], $item); 
         }
     }
 }

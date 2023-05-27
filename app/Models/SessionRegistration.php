@@ -18,6 +18,11 @@ class SessionRegistration extends Model
         return $this->belongsTo(Session::class);
     }
 
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
+
     public function registration()
     {
         return $this->belongsTo(SessionRegistration::class);

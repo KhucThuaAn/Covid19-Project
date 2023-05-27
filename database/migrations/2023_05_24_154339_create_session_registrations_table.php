@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('session_id');
             $table->tinyInteger('registration_id');
+            $table->Integer('campaign_id');
             $table->timestamps();
         });
         Artisan::call('db:seed');

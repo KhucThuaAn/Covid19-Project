@@ -18,7 +18,7 @@ class RegistrationSeeder extends Seeder
         $tickets = Ticket::all();
 
         foreach ($tickets as $ticket) {
-            $registrationCount = mt_rand(1, 6); // Số lượng bản ghi ngẫu nhiên cho mỗi ticket_id
+            $registrationCount = mt_rand(10, 20); // Số lượng bản ghi ngẫu nhiên cho mỗi ticket_id
 
             for ($i = 0; $i < $registrationCount; $i++) {
                 $citizen = $citizens->random();
