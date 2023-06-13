@@ -73,7 +73,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-3">
                         <label for="inputDate">Thời gian</label>
-                        <input type="text" class="form-control" id="inputDate" placeholder="yyyy-mm-dd" value="{{ $campaign->date }}" name="date">
+                        <input type="date" class="form-control" id="inputDate" placeholder="yyyy-mm-dd" value="{{ $campaign->date }}" name="date">
                     </div>
                 </div>
 

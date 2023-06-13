@@ -12,7 +12,6 @@ class LoginController extends Controller
             return redirect()->route('campaign.index');
         } else {
             return redirect()->back()->withErrors(['login' => 'Sai email hoặc mật khẩu']);
-            
         }
     }
 

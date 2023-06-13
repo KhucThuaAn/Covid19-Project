@@ -9,7 +9,6 @@ class CapacityController extends Controller
 {
     public function index($slug) {
         $campaign = Campaign::where('slug', $slug)->first();
-
         $chartData = [];
         foreach ($campaign->areas as $area) {
             foreach ($area->places as $place) {
@@ -22,7 +21,6 @@ class CapacityController extends Controller
                 }
             }
         }
-
         return view('reports.index', compact('campaign','chartData'));
     }
 }

@@ -88,7 +88,7 @@
 
                 <hr class="mb-4">
                 <button class="btn btn-primary" type="submit">Lưu vé</button>
-                <a href="{{ route('campaign.index')}}" class="btn btn-link">Quay lại</a>
+                <a href="{{ route('campaign.show', $campaign->slug)}}" class="btn btn-link">Quay lại</a>
             </form>
 
         </main>

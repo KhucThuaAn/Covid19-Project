@@ -38,18 +38,13 @@ class CampaignController extends Controller
             'slug.unique' => 'Slug đã bị trùng, bạn cần nhập tên chiến dịch khác',
             'date.required' => 'Bạn phải nhập thời gian'
         ];
-
         $this->validate($request,[
             'name'=>'required',
             'slug'=>'required|unique:campaigns,slug',
             'date'=>'required'
         ], $messages);
-        
-        // $errors = $validate->errors();
         $request['organizer_id'] = auth()->user()->id;
-        // dd($request->all());
         $save = Campaign::create($request->only('name','slug','date','organizer_id'));
-
         if($save) {
             return redirect()->route('campaign.index');
         } else {

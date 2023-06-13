@@ -52,3 +52,5 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::get('campaign/{slug}/capacity', [CapacityController::class, 'index'] )->name('campaign.capacity');
 
 });
+
+
